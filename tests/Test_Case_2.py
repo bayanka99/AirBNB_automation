@@ -15,7 +15,7 @@ def page(browser):
     page.close()
 
 
-def got_to_tel_aviv_with_2_adults(page):
+def got_to_tel_aviv_with_2_adults_and_1_child(page):
     page.goto("https://www.airbnb.com")
 
     page.wait_for_selector("#bigsearch-query-location-input", timeout=50000)
@@ -27,12 +27,13 @@ def got_to_tel_aviv_with_2_adults(page):
     page.wait_for_selector("[data-testid='stepper-adults-increase-button']", timeout=50000)
     page.click("[data-testid='stepper-adults-increase-button']")
     page.click("[data-testid='stepper-adults-increase-button']")
+    page.click("[data-testid='stepper-children-increase-button']")
 
     page.click("[data-testid='structured-search-input-search-button']")
     page.wait_for_timeout(5000)
 
 def test_case_2_airbnb_search_and_reserve(page):
-    got_to_tel_aviv_with_2_adults(page)
+    got_to_tel_aviv_with_2_adults_and_1_child(page)
     page.wait_for_selector("[itemprop='itemListElement']", timeout=50000)
 
     items = page.query_selector_all("[itemprop='itemListElement']")
